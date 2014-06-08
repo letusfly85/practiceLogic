@@ -4,17 +4,20 @@ object Put20 {
     }
 
     def put20(str: String): String = {
+        var leftSpace = str.map(_.toChar).filter(_ == ' ').size
         var strSize = str.size
 
         var newStr: String = ""
         str.map(_.toChar).foreach {c =>
-            if (c == ' ' && strSize > 3) {
+            if (c == ' ' && leftSpace > 2) {
                 newStr += "%20"
-                strSize -= 3
+                leftSpace -= 2
             
+            } else if (c == ' ') {
+                newStr = newStr
+
             } else {
                 newStr += c
-                strSize -= 1
             }
         }
 
